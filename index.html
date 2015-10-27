@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    
+    <meta charset="utf-8"> <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="viewport" content="width=device-width">
+    <meta name="apple-moble-web-app-capable" content="yes">
+    <meta name="apple-moble-web-app-status-bar-style" content="black">
+    
+    <link rel="stylesheet" type="text/css" href="css.css">
+    
+    <script language="javascript" type="text/javascript" src="application.js"></script>
+    
+</head>
+
+<body>
+<div id="inputs">
+<p>Product name:<input type="text" id="productName" size="20">
+Description:<input type="text" id="description" size="20">
+Date of purchase:<input type="text" id="dateOfPurchase" size="20">
+Expiration date:<input type="text" id="expirationDate" size="20">
+<button onclick="addProduct()">Add product</button>
+</p>
+</div>
+
+
+<div id="productList">
+<table>
+    
+    <tr>
+        <td>Product</td>
+        <td>Description</td>		
+        <td>Date of Purchase</td>
+        <td>Expiration Date</td>
+    </tr>
+    <a id="productListTable">
+        
+    </a>
+
+</table>
+</div>
+
+</body>
+</html>
