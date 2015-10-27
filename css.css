@@ -1,6 +1,14 @@
 table, th, td{
     border: 1px solid black;
+    width: 1000px;
+    text-align: center;
 }
+
 input{
     padding-right: 75px;
+}
+
+body{
+    text-align: center;
+    alignment-baseline: center;
 }

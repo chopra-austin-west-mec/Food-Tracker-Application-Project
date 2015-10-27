@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Page Title</title>
+    <title>Food Tracker</title>
     
     <meta charset="utf-8"> <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320"/>
@@ -19,7 +19,7 @@
 <body>
 <div id="inputs">
 <p>Product name:<input type="text" id="productName" size="20">
-Description:<input type="text" id="description" size="20">
+Description:<input type="text" id="description" size="20"><br>
 Date of purchase:<input type="text" id="dateOfPurchase" size="20">
 Expiration date:<input type="text" id="expirationDate" size="20">
 <button onclick="addProduct()">Add product</button>
@@ -27,21 +27,17 @@ Expiration date:<input type="text" id="expirationDate" size="20">
 </div>
 
 
-<div id="productList">
+<center>
 <table>
-    
+    <tbody id="productListTable">
     <tr>
         <td>Product</td>
         <td>Description</td>		
         <td>Date of Purchase</td>
         <td>Expiration Date</td>
-    </tr>
-    <a id="productListTable">
-        
-    </a>
-
+    </tr>        
+    </tbody>
 </table>
-</div>
-
+</center>
 </body>
 </html>
