@@ -1,6 +1,3 @@
-var dateOfPurchaseReversed = null;
-var expirationDateReversed = null;
-
 var dateOfPurchaseDay = null;
 var dateOfPurchaseMonth = null;
 var dateOfPurchaseYear = null;
@@ -16,16 +13,13 @@ var expirationDateGo = false;
 
 function addProduct(){
     
-    rewriteDate();
-    
     var productName = document.getElementById("productName").value;
     var description = document.getElementById("description").value;
     var dateOfPurchase = document.getElementById("dateOfPurchase").value;
     var expirationDate = document.getElementById("expirationDate").value;
     
     if (productName == "") {
-        alert("You need to put something in the product name field");
-        
+        alert("You need to put something in the product name field"); 
     }
     else{
         productNameGo = true;
@@ -57,6 +51,23 @@ function addProduct(){
         
     }
     
+    var dateOfPurchaseDay = dateOfPurchase.substring(8,10);
+    console.log(dateOfPurchaseDay);
+    var dateOfPurchaseMonth = dateOfPurchase.substring(5,7);
+    console.log(dateOfPurchaseMonth);
+    var dateOfPurchaseYear = dateOfPurchase.substring(0,4);
+    console.log(dateOfPurchaseYear);
+    
+    var expirationDateDay = expirationDate.substring(8,10);
+    console.log(dateOfPurchaseDay);
+    var expirationDateMonth = expirationDate.substring(5,7);
+    console.log(dateOfPurchaseMonth);
+    var expirationDateYear = expirationDate.substring(0,4);
+    console.log(dateOfPurchaseYear);
+    
+    dateOfPurchase = dateOfPurchaseMonth + "/" + dateOfPurchaseDay + "/" + dateOfPurchaseYear;
+    expirationDate = expirationDateMonth + "/" + expirationDateDay + "/" + expirationDateYear;
+    
     
     if (productNameGo == true && descriptionGo == true && dateOfPurchaseGo == true && expirationDateGo == true) {
         console.log("it is running")
@@ -86,19 +97,23 @@ function addProduct(){
         createTable.appendChild(node)
         document.getElementById("productListTable").appendChild(createTable);  //Finally append the TD node to the table
         
-        productNameGo = false;
-        descriptionGo = false;
-        dateOfPurchaseGo = false;
-        expirationDateGo = false;
+        testDate(expirationDateYear,expirationDateMonth,expirationDateDay)
+        
+        clearValues()
     }
 }
 
-function rewriteDate() {
-    var dateOfPurchaseDay = dateOfPurchase.substring(8,9);
-    console.log(dateOfPurchaseDay);
+function testDate(expirationDateYear,expirationDateMonth,expirationDateDay) {
+    var day = getDate();
+    var month = getMonth();
+    var year = getFullYear();
     
+    if (expirationDateYear > year) {
+        console.log("ex is bigger");
+    }
     
 }
+
 
 function clearValues() {
     

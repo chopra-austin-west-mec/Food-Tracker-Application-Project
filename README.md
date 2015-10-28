@@ -17,8 +17,8 @@ idea to your investors.**
 
   **Requirements**
   
-    Allow the user to enter food names, a description, date of purchase, and a shelf life or expiration date.
-    Have entered food show in a table on the page
+    ******Done****** Allow the user to enter food names, a description, date of purchase, and a shelf life or expiration date.
+    ******Done****** Have entered food show in a table on the page
     For food that is expiring in the next three days, highlight the row in red.
     
   **Above and beyond**
