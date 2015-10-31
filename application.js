@@ -52,18 +52,13 @@ function addProduct(){
     }
     
     var dateOfPurchaseDay = dateOfPurchase.substring(8,10);
-    console.log(dateOfPurchaseDay);
     var dateOfPurchaseMonth = dateOfPurchase.substring(5,7);
-    console.log(dateOfPurchaseMonth);
     var dateOfPurchaseYear = dateOfPurchase.substring(0,4);
-    console.log(dateOfPurchaseYear);
     
     var expirationDateDay = expirationDate.substring(8,10);
-    console.log(dateOfPurchaseDay);
     var expirationDateMonth = expirationDate.substring(5,7);
-    console.log(dateOfPurchaseMonth);
     var expirationDateYear = expirationDate.substring(0,4);
-    console.log(dateOfPurchaseYear);
+
     
     dateOfPurchase = dateOfPurchaseMonth + "/" + dateOfPurchaseDay + "/" + dateOfPurchaseYear;
     expirationDate = expirationDateMonth + "/" + expirationDateDay + "/" + expirationDateYear;
@@ -97,19 +92,41 @@ function addProduct(){
         createTable.appendChild(node)
         document.getElementById("productListTable").appendChild(createTable);  //Finally append the TD node to the table
         
-        testDate(expirationDateYear,expirationDateMonth,expirationDateDay)
+        testDate(expirationDateYear,expirationDateMonth,expirationDateDay,productName)
         
         clearValues()
     }
 }
 
-function testDate(expirationDateYear,expirationDateMonth,expirationDateDay) {
-    var day = getDate();
-    var month = getMonth();
-    var year = getFullYear();
+function testDate(expirationDateYear,expirationDateMonth,expirationDateDay,productName) {
+    var today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth();
+    var year = today.getFullYear();
     
-    if (expirationDateYear > year) {
-        console.log("ex is bigger");
+    console.log(day);
+    console.log(month);
+    console.log(year);
+    console.log(expirationDateYear);
+    
+    if (expirationDateYear <= year) {
+        console.log("food may be expired");
+        if (expirationDateMonth <= month ) {
+            console.log("food is most likely to be expiered");
+            if (expirationDateDay <= day) {
+                console.log("food is expired");
+                alert(productName + " is expired")
+            }
+            else{
+                console.log("food is not expired");
+            }
+        }
+        else{
+            console.log("food is not expired");
+        }
+    }
+    else{
+        console.log("it is not expired");
     }
     
 }
