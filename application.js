@@ -11,7 +11,32 @@ var descriptionGo = false;
 var dateOfPurchaseGo = false;
 var expirationDateGo = false;
 
+//function() {
+//    var cookieProductName = getCookie('foodName');
+//    addProduct(cookieProductName);
+//
+//
+//function getCookie(cname) {
+//    var name = cname + "=";
+//    var ca = document.cookie.split(';');
+//    for(var i=0; i<ca.length; i++) {
+//        var c = ca[i];
+//        while (c.charAt(0)==' ') c = c.substring(1);
+//        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+//    }
+//    return "";
+//}
+
 function addProduct(){
+    
+    
+    var productName = null;
+    
+    //if (givenProductName){
+    //    productName = givenProductName;
+    //}else{
+    //    productName = document.getElementById("productName").value;
+    //}
     
     var productName = document.getElementById("productName").value;
     var description = document.getElementById("description").value;
@@ -23,7 +48,6 @@ function addProduct(){
     }
     else{
         productNameGo = true;
-        console.log("productNameGo is set to true");
     }
     
     if (description == "") {
@@ -31,7 +55,6 @@ function addProduct(){
     }
     else{
         descriptionGo = true;
-        console.log("descriptionGo is set to true");
     }
     
     if (dateOfPurchase == "") {
@@ -39,16 +62,13 @@ function addProduct(){
     }
     else{
         dateOfPurchaseGo = true;
-        console.log("dateOfPurchaseGo is set to true");
     }
     
     if (expirationDate == "") {
         alert("You need to sellect a date in the expitation date field");
     }
     else{
-        expirationDateGo = true;
-        console.log("expirationDateGo is set to true");
-        
+        expirationDateGo = true;        
     }
     
     var dateOfPurchaseDay = dateOfPurchase.substring(8,10);
@@ -65,7 +85,9 @@ function addProduct(){
     
     
     if (productNameGo == true && descriptionGo == true && dateOfPurchaseGo == true && expirationDateGo == true) {
-        console.log("it is running")
+        
+        document.cookie="productName="+ productName;
+        
         var createTable = document.createElement("TR");
         
         var node = document.createElement("TD");                        //First create an TD node
@@ -94,7 +116,11 @@ function addProduct(){
         
         testDate(expirationDateYear,expirationDateMonth,expirationDateDay,productName)
         
-        clearValues()
+        document.cookie = "foodName=hello i am a cookie";
+        
+        
+        clearValues();
+        
     }
 }
 
@@ -102,6 +128,7 @@ function testDate(expirationDateYear,expirationDateMonth,expirationDateDay,produ
     var today = new Date();
     var day = today.getDate();
     var month = today.getMonth();
+    month = month + 1;
     var year = today.getFullYear();
     
     console.log(day);
