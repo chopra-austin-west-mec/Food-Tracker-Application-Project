@@ -11,33 +11,8 @@ var descriptionGo = false;
 var dateOfPurchaseGo = false;
 var expirationDateGo = false;
 
-//function() {
-//    var cookieProductName = getCookie('foodName');
-//    addProduct(cookieProductName);
-//
-//
-//function getCookie(cname) {
-//    var name = cname + "=";
-//    var ca = document.cookie.split(';');
-//    for(var i=0; i<ca.length; i++) {
-//        var c = ca[i];
-//        while (c.charAt(0)==' ') c = c.substring(1);
-//        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-//    }
-//    return "";
-//}
-
 function addProduct(){
-    
-    
-    var productName = null;
-    
-    //if (givenProductName){
-    //    productName = givenProductName;
-    //}else{
-    //    productName = document.getElementById("productName").value;
-    //}
-    
+
     var productName = document.getElementById("productName").value;
     var description = document.getElementById("description").value;
     var dateOfPurchase = document.getElementById("dateOfPurchase").value;
@@ -86,7 +61,7 @@ function addProduct(){
     
     if (productNameGo == true && descriptionGo == true && dateOfPurchaseGo == true && expirationDateGo == true) {
         
-        document.cookie="productName="+ productName;
+        
         
         var createTable = document.createElement("TR");
         
@@ -116,8 +91,6 @@ function addProduct(){
         
         testDate(expirationDateYear,expirationDateMonth,expirationDateDay,productName)
         
-        document.cookie = "foodName=hello i am a cookie";
-        
         
         clearValues();
         
@@ -131,30 +104,52 @@ function testDate(expirationDateYear,expirationDateMonth,expirationDateDay,produ
     month = month + 1;
     var year = today.getFullYear();
     
-    console.log(day);
-    console.log(month);
+    
     console.log(year);
     console.log(expirationDateYear);
     
-    if (expirationDateYear <= year) {
-        console.log("food may be expired");
-        if (expirationDateMonth <= month ) {
-            console.log("food is most likely to be expiered");
+    console.log(month);
+    console.log(expirationDateMonth);
+    
+    console.log(day);
+    console.log(expirationDateDay);
+    
+    if (expirationDateYear < year) {                    //test to see if the expiration year is less than todays year
+        console.log("food is expired");                 //if exexpiration year is less than todays year it returns true
+    }
+    else if (expirationDateYear == year) {              //test to see if the exporation year is the same year as todays year
+        if (expirationDateMonth < month) {              // if expiration year is less than todays year test to see if expiration month is less than todays month
+            console.log("food is expored");
+        }
+        else if (expirationDateMonth == month) {
             if (expirationDateDay <= day) {
                 console.log("food is expired");
-                alert(productName + " is expired")
             }
             else{
-                console.log("food is not expired");
+                console.log("food is not expired")
             }
         }
-        else{
-            console.log("food is not expired");
-        }
     }
-    else{
-        console.log("it is not expired");
-    }
+    
+    //if (expirationDateYear <= year) {
+    //    console.log("food may be expired");
+    //    if (expirationDateMonth <= month ) {
+    //        console.log("food is not expired");
+    //    }
+    //    else{
+    //        console.log("food is most likely to be expiered");
+    //        if (expirationDateDay <= day) {
+    //            console.log("food is expired");
+    //            alert(productName + " is expired")
+    //        }
+    //        else{
+    //            console.log("food is not expired");
+    //        }
+    //    }
+    //}
+    //else{
+    //    console.log("it is not expired");
+    //}
     
 }
 
@@ -176,4 +171,8 @@ function clearValues() {
     expirationDateDay = null;
     expirationDateMonth = null;
     expirationDateYear = null;
+}
+
+function addCookies(productName,description,dateOfPurchase,expirationDate) {
+    document.cookie="productName="+ productName;
 }
