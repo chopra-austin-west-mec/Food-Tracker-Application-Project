@@ -184,7 +184,7 @@ function clearValues() {
 }
 
 function addCookies(productName,description,dateOfPurchase,expirationDate) {
-    document.cookie="numberOfCookies=" + numberOfCookies;
+    //document.cookie="numberOfCookies=" + numberOfCookies;
     document.cookie="productName="+ productName;
     document.cookie="description=" + description;
     document.cookie="dateOfPurchase=" + dateOfPurchase;
