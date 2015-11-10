@@ -11,33 +11,7 @@ var descriptionGo = false;
 var dateOfPurchaseGo = false;
 var expirationDateGo = false;
 
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-    }
-    return "";
-}
-
-function isFirstTime() {
-    var firstTime=getCookie("firstTime");
-    if (firstTime!="") {
-        //run function to load all cookies
-    }else{
-        username = prompt("Please enter your name:", "");
-        if (username != "" && username != null) {
-            setCookie("username", username, 365);
-        }
-    }
-}
-
-function grabAllCookies() {
-    //code
-}
-
+var numberOfCookies = getCookie("numberOfCookies");
 
 function addProduct(){
 
@@ -87,6 +61,8 @@ function addProduct(){
     
     
     if (productNameGo == true && descriptionGo == true && dateOfPurchaseGo == true && expirationDateGo == true) {
+        
+        numberOfCookies = numberOfCookies + 1;
         
         addCookies(productName,description,dateOfPurchase,expirationDate);
         
@@ -141,14 +117,17 @@ function testDate(expirationDateYear,expirationDateMonth,expirationDateDay,produ
     
     if (expirationDateYear < year) {                            //test to see if the expiration year is less than todays year
         console.log(productName + " food is expired");          //if exexpiration year is less than todays year it returns true
+        alert(productName + " food is expired");
     }
     else if (expirationDateYear == year) {                      //test to see if the exporation year is the same year as todays year
         if (expirationDateMonth < month) {                      // if expiration year is less than todays year test to see if expiration month is less than todays month
             console.log(productName + " food is expired");
+            alert(productName + " food is expired");
         }
         else if (expirationDateMonth == month) {
             if (expirationDateDay <= day) {
                 console.log(productName + " food is expired");
+                alert(productName + " food is expired");
             }
             else{
                 console.log(productName + " is not expired")
@@ -181,12 +160,4 @@ function clearValues() {
     expirationDateDay = null;
     expirationDateMonth = null;
     expirationDateYear = null;
-}
-
-function addCookies(productName,description,dateOfPurchase,expirationDate) {
-    document.cookie="numberOfCookies=" + numberOfCookies;
-    document.cookie="productName="+ productName;
-    document.cookie="description=" + description;
-    document.cookie="dateOfPurchase=" + dateOfPurchase;
-    document.cookie="expirationDate=" + expirationDate;
 }
