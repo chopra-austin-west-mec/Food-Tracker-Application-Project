@@ -12,6 +12,7 @@ var dateOfPurchaseGo = false;
 var expirationDateGo = false;
 
 var numberOfCookies = getCookie("numberOfCookies");
+numberOfCookies = Number(numberOfCookies);
 
 function addProduct(){
 
@@ -63,8 +64,9 @@ function addProduct(){
     if (productNameGo == true && descriptionGo == true && dateOfPurchaseGo == true && expirationDateGo == true) {
         
         numberOfCookies = numberOfCookies + 1;
-        
-        addCookies(productName,description,dateOfPurchase,expirationDate);
+        console.log(numberOfCookies);
+        document.cookie= "numberOfCookies=" + numberOfCookies;
+        addCookies(productName,description,dateOfPurchase,expirationDate,numberOfCookies);
         
         var createTable = document.createElement("TR");
         
