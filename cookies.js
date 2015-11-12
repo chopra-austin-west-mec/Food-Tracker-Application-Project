@@ -1,9 +1,10 @@
 function isFirstTime() {
-  var firstTime=getCookie("firstTime");
+  var firstTime = getCookie("firstTime");
   if (firstTime == "NO") {
-    console.log("this is not there there first time");
+    console.log("this is not their first time");
     var numberOfCookies = Number(getCookie("numberOfCookies"));
-    if (numberOfCookies > 0) {
+    console.log(numberOfCookies);
+    if (numberOfCookies < 0) {
       console.log("there are cookies in the cookie jar");
       console.log(numberOfCookies);
       grabAllCookies();
@@ -13,7 +14,7 @@ function isFirstTime() {
     }
   }
   else{
-    console.log("this is there first time");
+    console.log("this is their first time");
     document.cookie = "firstTime=NO";
     document.cookie = "numberOfCookies=0";
   }
@@ -27,6 +28,7 @@ function getCookie(cname) {
     while (c.charAt(0)==' ') c = c.substring(1);
     if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
   return "";
+  }
 }
 
 function grabAllCookies() {
@@ -35,7 +37,7 @@ function grabAllCookies() {
   for (i = 1; i < numberOfCookies + 1; i++) {
     console.log(i);
     
-    var productNameCookie = '"productName' + i + '"';
+    var productNameCookie = '"productName' + i.toString() + '"';
     console.log(productName);
     
     productName = getCookie(productNameCookie);
@@ -49,6 +51,8 @@ function grabAllCookies() {
 }
 
 function addProductCookies(productName,description,dateOfPurchase,expirationDate) {
+  
+  
   
   var createTable = document.createElement("TR");
       
@@ -77,7 +81,7 @@ function addProductCookies(productName,description,dateOfPurchase,expirationDate
   document.getElementById("productListTable").appendChild(createTable);
 }
 
-function addCookies(productName,description,dateOfPurchase,expirationDate,numberOfCookies) {
+function addCookies(productName,description,dateOfPurchase,expirationDate,numberOfCookies){
   document.cookie="productName" + numberOfCookies + "="+ productName;
   document.cookie="description" + numberOfCookies + "="+ description;
   document.cookie="dateOfPurchase" + numberOfCookies + "="+ dateOfPurchase;
