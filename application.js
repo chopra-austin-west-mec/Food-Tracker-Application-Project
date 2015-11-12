@@ -11,8 +11,7 @@ var descriptionGo = false;
 var dateOfPurchaseGo = false;
 var expirationDateGo = false;
 
-var numberOfCookies = getCookie("numberOfCookies");
-numberOfCookies = Number(numberOfCookies);
+var numberOfCookies = Number(getCookie("numberOfCookies"));
 
 function addProduct(){
 
