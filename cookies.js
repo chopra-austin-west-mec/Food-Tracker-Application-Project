@@ -4,7 +4,7 @@ function isFirstTime() {
     console.log("this is not their first time");
     var numberOfCookies = Number(getCookie("numberOfCookies"));
     console.log(numberOfCookies);
-    if (numberOfCookies < 0) {
+    if (numberOfCookies > 0) {
       console.log("there are cookies in the cookie jar");
       console.log(numberOfCookies);
       grabAllCookies();
@@ -20,30 +20,26 @@ function isFirstTime() {
   }
 }
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0)==' ') c = c.substring(1);
-    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-  return "";
-  }
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
 function grabAllCookies() {
-  var numberOfCookies = Number(getCookie("numberOfCookies"));
+  var numberOfCookies = getCookie("numberOfCookies");
   console.log("grabbing  all cookies")
-  for (i = 1; i < numberOfCookies + 1; i++) {
+  for (i = 0; i < numberOfCookies; i++) {
     console.log(i);
     
-    var productNameCookie = '"productName' + i.toString() + '"';
-    console.log(productName);
+    var productNameCookie = '"productName' + (i +1) + '"';
+    console.log(productNameCookie);
     
     productName = getCookie(productNameCookie);
-    description = getCookie('"' + description + i + '"');
-    dateOfPurchase = getCookie('"' + dateOfPurchase + i + '"');
-    expirationDate = getCookie('"' + expirationDate + i + '"');
+    console.log(productName)
+    description = getCookie('"' + description + (i + 1) + '"');
+    dateOfPurchase = getCookie('"' + dateOfPurchase + (i + 1) + '"');
+    expirationDate = getCookie('"' + expirationDate + (i + 1) + '"');
     console.log("product name = " + productName);
     
     addProductCookies(productName ,description ,dateOfPurchase ,expirationDate );

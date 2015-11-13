@@ -11,8 +11,6 @@ var descriptionGo = false;
 var dateOfPurchaseGo = false;
 var expirationDateGo = false;
 
-var numberOfCookies = Number(getCookie("numberOfCookies"));
-
 function addProduct(){
 
     var productName = document.getElementById("productName").value;
@@ -62,7 +60,7 @@ function addProduct(){
     
     if (productNameGo == true && descriptionGo == true && dateOfPurchaseGo == true && expirationDateGo == true) {
         
-        numberOfCookies = numberOfCookies + 1;
+        numberOfCookies = Number(getCookie("numberOfCookies")) + 1;
         console.log(numberOfCookies);
         document.cookie= "numberOfCookies=" + numberOfCookies;
         addCookies(productName,description,dateOfPurchase,expirationDate,numberOfCookies);
