@@ -20,27 +20,49 @@ function isFirstTime() {
   }
 }
 
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
+function getCookie(cname) {
+  var cookies = document.cookie;
+  cookies = cookies.split("; ");
+  
+  for (var i=0; i < cookies.length; i++) {
+    cookies2 = cookies[i].split('=');
+    if (cookies2[0] == cname) {
+      console.log(cookies2[1]);
+      i = cookies.lenght + 1;
+      result = cookies2[1];
+      console.log(result)
+      return cookies2[1];
+    }
+  }
 }
 
 function grabAllCookies() {
   var numberOfCookies = getCookie("numberOfCookies");
+  console.log("number of cookies = " + numberOfCookies);
   console.log("grabbing  all cookies")
+  
   for (i = 0; i < numberOfCookies; i++) {
     console.log(i);
     
     var productNameCookie = '"productName' + (i +1) + '"';
+    var descriptionCookie = '"description' + (i +1) + '"';
+    var dateOfPurchaseCookie = '"dateOfPurchase' + (i +1) + '"';
+    var expirationDateCookie = '"expirationDate' + (i +1) + '"';
+    
     console.log(productNameCookie);
+    console.log(descriptionCookie);
+    console.log(dateOfPurchaseCookie);
+    console.log(expirationDateCookie);
     
     productName = getCookie(productNameCookie);
-    console.log(productName)
-    description = getCookie('"' + description + (i + 1) + '"');
-    dateOfPurchase = getCookie('"' + dateOfPurchase + (i + 1) + '"');
-    expirationDate = getCookie('"' + expirationDate + (i + 1) + '"');
-    console.log("product name = " + productName);
+    description = getCookie(descriptionCookie);
+    dateOfPurchase = getCookie(dateOfPurchaseCookie);
+    expirationDate = getCookie(expirationDateCookie);
+    
+    console.log(productName);
+    console.log(description);
+    console.log(dateOfPurchase);
+    console.log(expirationDate);
     
     addProductCookies(productName ,description ,dateOfPurchase ,expirationDate );
   }
@@ -48,10 +70,8 @@ function grabAllCookies() {
 
 function addProductCookies(productName,description,dateOfPurchase,expirationDate) {
   
-  
-  
   var createTable = document.createElement("TR");
-      
+  
   var node = document.createElement("TD");
   var textnode = document.createTextNode(productName);
   node.appendChild(textnode);
