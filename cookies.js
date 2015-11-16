@@ -3,10 +3,8 @@ function isFirstTime() {
   if (firstTime == "NO") {
     console.log("this is not their first time");
     var numberOfCookies = Number(getCookie("numberOfCookies"));
-    console.log(numberOfCookies);
     if (numberOfCookies > 0) {
-      console.log("there are cookies in the cookie jar");
-      console.log(numberOfCookies);
+      console.log("there are " + numberOfCookies + " cookies in the cookie jar");
       grabAllCookies();
     }
     else{
@@ -27,10 +25,8 @@ function getCookie(cname) {
   for (var i=0; i < cookies.length; i++) {
     cookies2 = cookies[i].split('=');
     if (cookies2[0] == cname) {
-      console.log(cookies2[1]);
       i = cookies.lenght + 1;
       result = cookies2[1];
-      console.log(result)
       return cookies2[1];
     }
   }
@@ -38,33 +34,28 @@ function getCookie(cname) {
 
 function grabAllCookies() {
   var numberOfCookies = getCookie("numberOfCookies");
-  console.log("number of cookies = " + numberOfCookies);
   console.log("grabbing  all cookies")
   
   for (i = 0; i < numberOfCookies; i++) {
-    console.log(i);
-    
-    var productNameCookie = '"productName' + (i +1) + '"';
-    var descriptionCookie = '"description' + (i +1) + '"';
-    var dateOfPurchaseCookie = '"dateOfPurchase' + (i +1) + '"';
-    var expirationDateCookie = '"expirationDate' + (i +1) + '"';
-    
-    console.log(productNameCookie);
-    console.log(descriptionCookie);
-    console.log(dateOfPurchaseCookie);
-    console.log(expirationDateCookie);
-    
-    productName = getCookie(productNameCookie);
-    description = getCookie(descriptionCookie);
-    dateOfPurchase = getCookie(dateOfPurchaseCookie);
-    expirationDate = getCookie(expirationDateCookie);
-    
-    console.log(productName);
-    console.log(description);
-    console.log(dateOfPurchase);
-    console.log(expirationDate);
-    
-    addProductCookies(productName ,description ,dateOfPurchase ,expirationDate );
+    var productCookie = 'product' + (i +1);
+    breakCookie(productCookie);
+  }
+}
+
+function breakCookie(productValues) {
+  console.log("breaking cookies")
+  
+  var cookies = document.cookie;
+  cookies = cookies.split("; ");
+  
+  for (var i=0; i < cookies.length; i++) {
+    cookies2 = cookies[i].split('=');
+    if (cookies2[0] == productValues) {
+      i = cookies.lenght + 1;
+      productToAdd =  cookies2[1];
+      var values = productToAdd.split(", ");
+      addProductCookies(values[0],values[1],values[2],values[3]);
+    }
   }
 }
 
@@ -98,8 +89,5 @@ function addProductCookies(productName,description,dateOfPurchase,expirationDate
 }
 
 function addCookies(productName,description,dateOfPurchase,expirationDate,numberOfCookies){
-  document.cookie="productName" + numberOfCookies + "="+ productName;
-  document.cookie="description" + numberOfCookies + "="+ description;
-  document.cookie="dateOfPurchase" + numberOfCookies + "="+ dateOfPurchase;
-  document.cookie="expirationDate" + numberOfCookies + "=" + expirationDate;
+  document.cookie="product" + numberOfCookies + "=" + productName + ", " + description + ", " + dateOfPurchase + ", " + expirationDate;
 }
