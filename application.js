@@ -45,17 +45,13 @@ function addProduct(){
     else{
         expirationDateGo = true;        
     }
+
+    dateOfPurchase = dateOfPurchase.split("-");
+    expirationDate = expirationDate.split("-");
+    expirationDate2 = expirationDate;
     
-    var dateOfPurchaseDay = dateOfPurchase.substring(8,10);
-    var dateOfPurchaseMonth = dateOfPurchase.substring(5,7);
-    var dateOfPurchaseYear = dateOfPurchase.substring(0,4);
-    
-    var expirationDateDay = expirationDate.substring(8,10);
-    var expirationDateMonth = expirationDate.substring(5,7);
-    var expirationDateYear = expirationDate.substring(0,4);
-    
-    dateOfPurchase = dateOfPurchaseMonth + "/" + dateOfPurchaseDay + "/" + dateOfPurchaseYear;
-    expirationDate = expirationDateMonth + "/" + expirationDateDay + "/" + expirationDateYear;
+    dateOfPurchase = dateOfPurchase[1] + "/" + dateOfPurchase[2] + "/" + dateOfPurchase[0];
+    expirationDate = expirationDate[1] + "/" + expirationDate[2] + "/" + expirationDate[0];
     
     
     if (productNameGo == true && descriptionGo == true && dateOfPurchaseGo == true && expirationDateGo == true) {
@@ -70,28 +66,35 @@ function addProduct(){
         var node = document.createElement("TD");                        //First create an TD node
         var textnode = document.createTextNode(productName);            //then create a Text node
         node.appendChild(textnode);                                     //then append the Text node to the TD node
-        createTable.appendChild(node)
+        createTable.appendChild(node);
         document.getElementById("productListTable").appendChild(createTable);  //Finally append the TD node to the table
         
         var node = document.createElement("TD");
         var textnode = document.createTextNode(description);
         node.appendChild(textnode);
-        createTable.appendChild(node)
+        createTable.appendChild(node);
         document.getElementById("productListTable").appendChild(createTable);  //Finally append the TD node to the table
         
         var node = document.createElement("TD");
         var textnode = document.createTextNode(dateOfPurchase);
         node.appendChild(textnode);
-        createTable.appendChild(node)
+        createTable.appendChild(node);
         document.getElementById("productListTable").appendChild(createTable);  //Finally append the TD node to the table
         
         var node = document.createElement("TD");
         var textnode = document.createTextNode(expirationDate);
         node.appendChild(textnode);
-        createTable.appendChild(node)
-        document.getElementById("productListTable").appendChild(createTable);  //Finally append the TD node to the table
+        createTable.appendChild(node);
+        document.getElementById("productListTable").appendChild(createTable);
         
-        testDate(expirationDateYear,expirationDateMonth,expirationDateDay,productName)
+        var node = document.createElement("TD");
+        node.node.setAttribute("id", "table")
+        var textnode = document.getElementById("table").innerHTML = '<button onclick="removeProduct(' + "'" + 'product' + numberOfCookies + "'" +')">X</button>';
+        node.appendChild(textnode);
+        createTable.appendChild(node);
+        document.getElementById("productListTable").appendChild(createTable);
+        
+        testDate(expirationDate2[0],expirationDate2[1],expirationDate2[2],productName)
         
         clearValues();
         
@@ -101,8 +104,11 @@ function addProduct(){
 function testDate(expirationDateYear,expirationDateMonth,expirationDateDay,productName) {
     var today = new Date();
     var day = today.getDate();
+    console.log(day);
     var month = today.getMonth();
+    console.log(month);
     month = month + 1;
+    console.log(month);
     var year = today.getFullYear();
      
     console.log(year);
@@ -159,4 +165,8 @@ function clearValues() {
     expirationDateDay = null;
     expirationDateMonth = null;
     expirationDateYear = null;
+}
+function removeProduct(product) {
+    console.log("removing " + product)
+    document.cookie = product + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 }

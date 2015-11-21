@@ -89,5 +89,6 @@ function addProductCookies(productName,description,dateOfPurchase,expirationDate
 }
 
 function addCookies(productName,description,dateOfPurchase,expirationDate,numberOfCookies){
+  console.log("adding cookies");
   document.cookie="product" + numberOfCookies + "=" + productName + ", " + description + ", " + dateOfPurchase + ", " + expirationDate;
 }
