@@ -20,6 +20,7 @@ body{
     background-image: url(bacon.png);
     background-repeat: no-repeat;
     background-position: center top;
+    background-color: rgba(0,225,0,0.5)
 }
 #xBox{
     width:200px;
